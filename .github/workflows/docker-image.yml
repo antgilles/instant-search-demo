@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Set tag
-      run: echo "$(date +%s)" >> $TAG
+      run: echo "TAG=$(date +%s)" >> $GITHUB_ENV
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag antgilles/algassignement:$TAG
     - name: Login on DockerHub
