@@ -3,6 +3,9 @@ name: Docker Image CI
 on:
   push:
     branches: [ "master" ]
+    
+env:
+  TAG: $(date +%s)
 
 jobs:
 
@@ -13,8 +16,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag antgilles/algassignement:$(date +%s)
+      run: docker build . --file Dockerfile --tag antgilles/algassignement:$TAG
     - name: Login on DockerHub
       run: docker login -u antgilles -p ${{ secrets.GH_PASS }}
     - name: Push on DockerHub
-      run: docker push antgilles/algassignement:$(date +%s)
+      run: docker push antgilles/algassignement:$TAG
