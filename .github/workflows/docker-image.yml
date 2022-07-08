@@ -10,8 +10,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag antgilles/algassignement:$(echo $GITHUB_SHA | cut -c 1-6)"
+      run: docker build . --file Dockerfile --tag antgilles/algassignement:$(echo $GITHUB_SHA | cut -c 1-6)
     - name: Login on DockerHub
       run: docker login -u antgilles -p ${{ secrets.GH_PASS }}
     - name: Push on DockerHub
-      run: docker push antgilles/algassignement:$(echo $GITHUB_SHA | cut -c 1-6)"
+      run: docker push antgilles/algassignement:$(echo $GITHUB_SHA | cut -c 1-6)
