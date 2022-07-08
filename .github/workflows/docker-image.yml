@@ -13,8 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag antgilles/algassignement:$(date +%s)
+      run: docker build . --file Dockerfile --tag ${{ secrets.GH_USER }}/algassignement:$(date +%s)
     - name: Login on DockerHub
       run: docker login -u ${{ secrets.GH_USER }} -p ${{ secrets.GH_PASS }}
     - name: Push on DockerHub
-      run: docker push antgilles/algassignement:$(date +%s)
+      run: docker push ${{ secrets.GH_USER }}/algassignement:$(date +%s)
