@@ -9,11 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Set tag
-      run: echo "TAG=$(date +%s)" >> $GITHUB_ENV
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag antgilles/algassignement:$TAG
+      run: docker build . --file Dockerfile --tag antgilles/algassignement:${{ github.head_ref }}.${{ github.sha }}
     - name: Login on DockerHub
       run: docker login -u antgilles -p ${{ secrets.GH_PASS }}
     - name: Push on DockerHub
-      run: docker push antgilles/algassignement:$TAG
+      run: docker push antgilles/algassignement:${{ github.head_ref }}.${{ github.sha }}
